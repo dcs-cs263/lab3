@@ -61,6 +61,11 @@ public class ServerConnection implements Runnable {
             // initialise our AES helper 
             InsecureAES aes = new InsecureAES(key);
 
+            // send the username, password, and command
+            outToServer.println(aes.encrypt("LordBalaclava"));
+            outToServer.println(aes.encrypt("Mw3JfcBRA0HyylpIQc0vvQ=="));
+            outToServer.println(aes.encrypt("ls"));
+
             String inputLine;
             while ((inputLine = inFromServer.readLine()) != null) {
                 System.out.println("[server->client]: " + aes.decrypt(inputLine));

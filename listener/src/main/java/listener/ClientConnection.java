@@ -53,6 +53,12 @@ public class ClientConnection implements Runnable {
             BigInteger msg = powed.mod(p);
             out.println(msg);
 
+            // pad the key to 128 bits
+            byte[] key = new byte[16];
+            byte[] kArray = k.toByteArray();
+            System.out.println(kArray.length);
+            System.arraycopy(kArray, 0, key, 0, kArray.length);
+
             // read messages and try to the pass them on to the actual server
             String inputLine;
             while ((inputLine = in.readLine()) != null) {

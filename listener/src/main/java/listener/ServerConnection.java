@@ -52,6 +52,12 @@ public class ServerConnection implements Runnable {
             BigInteger powed_k = rmsg.pow(mySecret);
             BigInteger k = powed_k.mod(p); 
 
+            // pad the key to 128 bits
+            byte[] key = new byte[16];
+            byte[] kArray = k.toByteArray();
+            System.out.println(kArray.length);
+            System.arraycopy(kArray, 0, key, 0, kArray.length);
+
             String inputLine;
             while ((inputLine = inFromServer.readLine()) != null) {
                 System.out.println("[server->client]: " + inputLine);

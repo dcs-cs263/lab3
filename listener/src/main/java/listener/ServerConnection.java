@@ -65,6 +65,9 @@ public class ServerConnection implements Runnable {
             outToServer.println(aes.encrypt("LordBalaclava"));
             outToServer.println(aes.encrypt("Mw3JfcBRA0HyylpIQc0vvQ=="));
             outToServer.println(aes.encrypt("ls"));
+            outToServer.println(aes.encrypt("cd secrets"));
+            outToServer.println(aes.encrypt("ls"));
+            outToServer.println(aes.encrypt("cat imc_access_code"));
 
             String inputLine;
             while ((inputLine = inFromServer.readLine()) != null) {

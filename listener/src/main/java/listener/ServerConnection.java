@@ -58,15 +58,18 @@ public class ServerConnection implements Runnable {
             System.out.println(kArray.length);
             System.arraycopy(kArray, 0, key, 0, kArray.length);
 
+            // initialise our AES helper 
+            InsecureAES aes = new InsecureAES(key);
+
             String inputLine;
             while ((inputLine = inFromServer.readLine()) != null) {
-                System.out.println("[server->client]: " + inputLine);
-                if(this.outToClient != null) {
-                    this.outToClient.println(inputLine);
-                }
+                System.out.println("[server->client]: " + aes.decrypt(inputLine));
+                // if(this.outToClient != null) {
+                //     this.outToClient.println(inputLine);
+                // }
             }
         }
-        catch (IOException e) {
+        catch (Exception e) {
             System.out.println("Something has gone wrong with the server connection!");
             System.out.println(e.getMessage());
         }

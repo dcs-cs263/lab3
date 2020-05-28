@@ -62,6 +62,9 @@ public class ClientConnection implements Runnable {
             // initialise our AES helper 
             InsecureAES aes = new InsecureAES(key);
 
+            // send the server's initial message, encrypted
+            out.println(aes.encrypt("o28uyrhkjnkA12iJKHAL"));
+
             // read messages and try to the pass them on to the actual server
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
